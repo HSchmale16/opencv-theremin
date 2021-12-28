@@ -112,7 +112,7 @@ def main():
     detector = HandDetector()
 
     samplerate=44100
-    with sd.OutputStream(device=13, channels=1, callback=snd_callback, samplerate=samplerate):
+    with sd.OutputStream(device=sd.default.device, channels=1, callback=snd_callback, samplerate=samplerate, blocksize=3000):
         pTime = 0
         while True:
             success, img = cap.read()
