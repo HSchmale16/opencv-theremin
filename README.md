@@ -1,6 +1,6 @@
 # Theremin with OpenCV and Mediapipe
 
-The theremin is a super cool kind of ghostly musical instrument. 
+The [theremin][1] is a super cool kind of ghostly musical instrument. 
 I wanted one, but didn't want to buy one cause it would sit around. So I decided to make one with
 OpenCV. Right now it just does the pitch stuff, without much feedback like a proper theremin would
 do, but that can be fixed in phase2.
@@ -8,7 +8,7 @@ do, but that can be fixed in phase2.
 This uses mediapipe's hand detector to find all your hands. It will only make a sound if it finds
 exactly 2 hands.
 
-
+[1]: https://en.wikipedia.org/wiki/Theremin
 
 # Setup
 
