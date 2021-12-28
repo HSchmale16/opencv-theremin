@@ -101,7 +101,8 @@ def main():
         nonlocal start_idx
         t = (start_idx + np.arange(frames)) / samplerate
         t = t.reshape(-1, 1)
-        outdata[:] = volume * np.sin(2 * np.pi * (pitch * 2000 + 200) * t)
+        outdata[:] = 0.5 * volume * np.sin(2 * np.pi * 256 * t)
+        outdata[:] += 0.5 * volume * np.sin(2 * np.pi * (pitch * 2000 + 200) * t)
         start_idx += frames
 
 
