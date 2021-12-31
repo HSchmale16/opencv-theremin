@@ -56,11 +56,10 @@ class HandDetector():
 
         hands = self.results.multi_hand_landmarks
         if hands:
-            print(len(hands))
             if len(hands) != 2:
                 return 0, 0
             
-            h, w, *_ = img.shape
+            h, w, c = img.shape
 
             l = []
             for hand in hands:
@@ -70,11 +69,10 @@ class HandDetector():
                 l.append([cx, cy])
             
             (x0, y0), (x1, y1) = l
-            print(l)
+            #print(l)
 
             if x0 < x1: 
                 # The 0th hand is the volume control because it's further left
-
                 return self.compute_vol(x0, y0, h), self.compute_pitch(x1, y1, h)
             else:
                 # The 1th hand is the volume control
@@ -101,6 +99,7 @@ def main():
         nonlocal start_idx
         t = (start_idx + np.arange(frames)) / samplerate
         t = t.reshape(-1, 1)
+        print(outdata)
         outdata[:] = 0.5 * volume * np.sin(2 * np.pi * 256 * t)
         outdata[:] += 0.5 * volume * np.sin(2 * np.pi * (pitch * 2000 + 200) * t)
         start_idx += frames
@@ -122,7 +121,7 @@ def main():
             img = cv2.flip(img, 1)
             img = detector.findHands(img)
             pitch, volume = detector.determine_pitch_hands(img)
-            print(pitch, volume)
+            #print(pitch, volume)
 
             #lmlist = detector.findPosition(img)
             #if len(lmlist) != 0:
